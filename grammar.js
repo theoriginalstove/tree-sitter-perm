@@ -26,6 +26,11 @@ module.exports = grammar({
       alias(/[eE][nN][tT][iI][tT][yY]/, "entity"),
       $.identifier,
       $.opening_brace,
+      optional(
+        choice(
+          
+        )
+      ),
       $.closing_brace,
     ),
 
