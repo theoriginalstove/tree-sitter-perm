@@ -25,6 +25,52 @@
         {
           "type": "opening_brace",
           "named": true
+        },
+        {
+          "type": "relation_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "relation_association",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "relation_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "relation_association",
+          "named": true
         }
       ]
     }
@@ -67,5 +113,9 @@
   {
     "type": "opening_brace",
     "named": true
+  },
+  {
+    "type": "relation",
+    "named": false
   }
 ]

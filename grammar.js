@@ -28,10 +28,21 @@ module.exports = grammar({
       $.opening_brace,
       optional(
         choice(
-
+          $.relation_definition
         )
       ),
       $.closing_brace,
+    ),
+
+    relation_definition: ($) => seq(
+      alias(/[rR][eE][lL][aA][tT][iI][oO][nN]/, "relation"),
+      field("name", $.identifier),
+      $.relation_association
+    ),
+
+    relation_association: ($) => seq(
+      /@/,
+      field("name", $.identifier)
     ),
 
     variable: () => token.immediate(/[a-zA-Z_][a-zA-Z0-9_]*/),
@@ -39,5 +50,7 @@ module.exports = grammar({
     identifier: $ => /[a-z]+/,
     opening_brace: $ => '{',
     closing_brace: $ => '}',
+    and_statement: $ => "and",
+    or_statement: $ => "or"
   }
 })

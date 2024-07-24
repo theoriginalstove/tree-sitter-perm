@@ -55,3 +55,47 @@ entity organization {}
         (identifier)
         (opening_brace)
         (closing_brace)))
+
+==================
+Entity with comment
+==================
+
+entity user {
+    // comment here
+}
+
+---
+
+(source_file
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (comment)
+        (closing_brace)))
+
+==================
+Entities with basic relation
+==================
+
+entity user {}
+
+entity organization {
+    relation admin @user
+}
+
+---
+
+(source_file
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (closing_brace))
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (relation_definition
+            (identifier)
+            (relation_association
+                (identifier)))
+        (closing_brace)))
+

@@ -55,7 +55,12 @@
           "members": [
             {
               "type": "CHOICE",
-              "members": []
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "relation_definition"
+                }
+              ]
             },
             {
               "type": "BLANK"
@@ -65,6 +70,49 @@
         {
           "type": "SYMBOL",
           "name": "closing_brace"
+        }
+      ]
+    },
+    "relation_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[rR][eE][lL][aA][tT][iI][oO][nN]"
+          },
+          "named": false,
+          "value": "relation"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "relation_association"
+        }
+      ]
+    },
+    "relation_association": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "@"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },
@@ -90,6 +138,14 @@
     "closing_brace": {
       "type": "STRING",
       "value": "}"
+    },
+    "and_statement": {
+      "type": "STRING",
+      "value": "and"
+    },
+    "or_statement": {
+      "type": "STRING",
+      "value": "or"
     }
   },
   "extras": [
