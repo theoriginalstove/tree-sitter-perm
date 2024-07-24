@@ -24,11 +24,11 @@ module.exports = grammar({
 
     entity_definition: ($) => seq(
       alias(/[eE][nN][tT][iI][tT][yY]/, "entity"),
-      $.identifier,
+      field("name", $.identifier),
       $.opening_brace,
       optional(
         choice(
-          
+
         )
       ),
       $.closing_brace,
