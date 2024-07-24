@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-perm",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Perm grammer for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -20,7 +20,7 @@
     "grammar.js",
     "binding.gyp",
     "queries/*",
-    "src/**",
+    "src/**"
   ],
   "dependencies": {
     "node-addon-api": "^7.1.0",
@@ -44,7 +44,7 @@
       "file-types": ["perm"],
       "highlights": [
         "queries/highlights.scm"
-      ],
+      ]
     }
   ]
 }

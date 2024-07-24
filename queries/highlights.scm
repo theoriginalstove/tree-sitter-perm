@@ -2,4 +2,6 @@
 ;-------------------
 
 "entity" @keyword
-(identifier) @type
+(entity_definition) @keyword
+
+(comment) @comment
