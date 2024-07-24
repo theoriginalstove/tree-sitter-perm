@@ -1,5 +1,5 @@
 ==================
-Image with tag
+Basic Comment
 ==================
 
 // comment
@@ -8,3 +8,50 @@ Image with tag
 
 (source_file
     (comment))
+
+==================
+Multiple Comments
+==================
+
+// comment 1
+// comment 2
+
+---
+
+(source_file
+    (comment)
+    (comment))
+
+==================
+Single Entity Definition
+==================
+
+entity user {}
+
+---
+
+(source_file
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (closing_brace)))
+
+==================
+Multiple Entity Definition
+==================
+
+entity user {}
+
+entity organization {}
+
+---
+
+(source_file
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (closing_brace))
+    (entity_definition
+        (identifier)
+        (opening_brace)
+        (closing_brace)))

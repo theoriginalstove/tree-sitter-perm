@@ -1,5 +1,28 @@
 [
   {
+    "type": "entity_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "closing_brace",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "opening_brace",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -8,7 +31,7 @@
       "required": false,
       "types": [
         {
-          "type": "comment",
+          "type": "entity_definition",
           "named": true
         }
       ]
@@ -19,7 +42,23 @@
     "named": false
   },
   {
+    "type": "closing_brace",
+    "named": true
+  },
+  {
     "type": "comment",
+    "named": true
+  },
+  {
+    "type": "entity",
+    "named": false
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "opening_brace",
     "named": true
   }
 ]

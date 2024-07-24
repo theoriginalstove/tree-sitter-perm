@@ -22,7 +22,33 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "comment"
+          "name": "entity_definition"
+        }
+      ]
+    },
+    "entity_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[eE][nN][tT][iI][tT][yY]"
+          },
+          "named": false,
+          "value": "entity"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "opening_brace"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "closing_brace"
         }
       ]
     },
@@ -36,12 +62,28 @@
     "comment": {
       "type": "PATTERN",
       "value": "\\/\\/.*"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[a-z]+"
+    },
+    "opening_brace": {
+      "type": "STRING",
+      "value": "{"
+    },
+    "closing_brace": {
+      "type": "STRING",
+      "value": "}"
     }
   },
   "extras": [
     {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "\\s+"
     }
   ],
   "conflicts": [],
