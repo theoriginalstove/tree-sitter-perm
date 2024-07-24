@@ -1,0 +1,44 @@
+{
+  "name": "tree-sitter-perm",
+  "version": "1.0.0",
+  "description": "Perm grammer for tree-sitter",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
+  },
+  "author": "Steven Turturo",
+  "license": "Apache-2.0",
+  "keywords": [
+    "Permify",
+    "Perm",
+    "tree-sitter"
+  ],
+  "files": [
+    "grammar.js"
+  ],
+  "dependencies": {
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.22.6",
+    "prebuildify": "^6.0.0"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.perm",
+      "injection-regex": "^perm$"
+    }
+  ]
+}

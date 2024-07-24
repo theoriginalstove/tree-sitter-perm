@@ -1,0 +1,10 @@
+==================
+Image with tag
+==================
+
+// comment
+
+---
+
+(source_file
+    (comment))
