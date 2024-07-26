@@ -23,7 +23,7 @@ module.exports = grammar({
       ),
 
     entity_definition: ($) => seq(
-      alias(/[eE][nN][tT][iI][tT][yY]/, "entity"),
+      'entity',
       field("name", $.identifier),
       $.opening_brace,
       optional(
@@ -35,7 +35,7 @@ module.exports = grammar({
     ),
 
     relation_definition: ($) => seq(
-      alias(/[rR][eE][lL][aA][tT][iI][oO][nN]/, "relation"),
+      'relation',
       field("name", $.identifier),
       $.relation_association
     ),
@@ -51,6 +51,13 @@ module.exports = grammar({
     opening_brace: $ => '{',
     closing_brace: $ => '}',
     and_statement: $ => "and",
-    or_statement: $ => "or"
+    or_statement: $ => "or",
+
+    type: ($) => choice(
+      'boolean',
+      'string',
+      'integer',
+      'double'
+    )
   }
 })
