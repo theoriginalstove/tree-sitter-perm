@@ -1,23 +1,11 @@
 [
-    "entity"
-    "relation"
-    "action"
-] @keyword
+  "entity"
+  "relation"
+]@keyword
 
 [
-    (and_statement)
-    (or_statement)
-] @keyword.conditional
+  (and_statement)
+  (or_statement)
+]@keyword.conditional
 
 (comment) @comment
-
-(type) @type
-
-[
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-]  @punctuation.bracket

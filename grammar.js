@@ -53,11 +53,11 @@ module.exports = grammar({
     and_statement: $ => "and",
     or_statement: $ => "or",
 
-    type: ($) => choice(
-      'boolean',
-      'string',
-      'integer',
-      'double'
-    )
+//    type: $ => choice(
+//      'boolean',
+//      'string',
+//      'integer',
+//      'double'
+//    )
   }
 })
