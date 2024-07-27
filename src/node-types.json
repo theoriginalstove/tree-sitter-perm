@@ -95,12 +95,20 @@
     "named": false
   },
   {
+    "type": "boolean",
+    "named": false
+  },
+  {
     "type": "closing_brace",
     "named": true
   },
   {
     "type": "comment",
     "named": true
+  },
+  {
+    "type": "double",
+    "named": false
   },
   {
     "type": "entity",
@@ -111,11 +119,19 @@
     "named": true
   },
   {
+    "type": "integer",
+    "named": false
+  },
+  {
     "type": "opening_brace",
     "named": true
   },
   {
     "type": "relation",
+    "named": false
+  },
+  {
+    "type": "string",
     "named": false
   }
 ]

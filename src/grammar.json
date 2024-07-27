@@ -30,12 +30,7 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[eE][nN][tT][iI][tT][yY]"
-          },
-          "named": false,
+          "type": "STRING",
           "value": "entity"
         },
         {
@@ -77,12 +72,7 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "ALIAS",
-          "content": {
-            "type": "PATTERN",
-            "value": "[rR][eE][lL][aA][tT][iI][oO][nN]"
-          },
-          "named": false,
+          "type": "STRING",
           "value": "relation"
         },
         {
@@ -146,6 +136,27 @@
     "or_statement": {
       "type": "STRING",
       "value": "or"
+    },
+    "type": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "boolean"
+        },
+        {
+          "type": "STRING",
+          "value": "string"
+        },
+        {
+          "type": "STRING",
+          "value": "integer"
+        },
+        {
+          "type": "STRING",
+          "value": "double"
+        }
+      ]
     }
   },
   "extras": [
