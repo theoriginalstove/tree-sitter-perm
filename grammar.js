@@ -72,16 +72,59 @@ module.exports = grammar({
         ),
       ),
 
+    attribute_definition: ($) =>
+      seq("attribute", $.identifier, $.attribute_type),
+
+    attribute_type: ($) =>
+      choice($.boolean_type, $.string_type, $.integer_type, $.double_type),
+
+    rule_definition: ($) =>
+      seq(
+        "rule",
+        $.identifier,
+        $.opening_parenthesis,
+        optional(repeat($.rule_parameter)),
+        $.close_parenthesis,
+        $.opening_brace,
+        $.rule_conditional,
+        $.closing_brace,
+      ),
+
+    rule_parameter: ($) => seq($.identifier, $.attribute_type),
+    rule_conditional: ($) =>
+      seq($.identifier, repeat(choice($.identifier, $.conditional_statement))),
+
     variable: () => token.immediate(/[a-zA-Z_][a-zA-Z0-9_]*/),
     comment: () => /\/\/.*/,
     identifier: ($) => /[a-z]+/,
     opening_brace: ($) => "{",
     closing_brace: ($) => "}",
+    opening_parenthesis: ($) => "(",
+    close_parenthesis: ($) => ")",
     and_statement: ($) => " and ",
     or_statement: ($) => " or ",
     not_statement: ($) => " not ",
     in_statement: ($) => " in ",
-
-    attribute_type: ($) => choice("boolean", "string", "integer", "double"),
+    gt: ($) => ">",
+    gte: ($) => ">=",
+    ne: ($) => "!=",
+    lt: ($) => "<",
+    lte: ($) => "<=",
+    conditional_statement: ($) =>
+      choice(
+        $.lt,
+        $.lte,
+        $.ne,
+        $.gt,
+        $.gte,
+        $.and_statement,
+        $.or_statement,
+        $.not_statement,
+        $.in_statement,
+      ),
+    boolean_type: ($) => seq("boolean", optional(seq("[", "]"))),
+    string_type: ($) => seq("string", optional(seq("[", "]"))),
+    integer_type: ($) => seq("integer", optional(seq("[", "]"))),
+    double_type: ($) => seq("double", optional(seq("[", "]"))),
   },
 });

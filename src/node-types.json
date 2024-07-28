@@ -1,5 +1,89 @@
 [
   {
+    "type": "attribute_type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "boolean_type",
+          "named": true
+        },
+        {
+          "type": "double_type",
+          "named": true
+        },
+        {
+          "type": "integer_type",
+          "named": true
+        },
+        {
+          "type": "string_type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean_type",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "conditional_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "and_statement",
+          "named": true
+        },
+        {
+          "type": "gt",
+          "named": true
+        },
+        {
+          "type": "gte",
+          "named": true
+        },
+        {
+          "type": "in_statement",
+          "named": true
+        },
+        {
+          "type": "lt",
+          "named": true
+        },
+        {
+          "type": "lte",
+          "named": true
+        },
+        {
+          "type": "ne",
+          "named": true
+        },
+        {
+          "type": "not_statement",
+          "named": true
+        },
+        {
+          "type": "or_statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "double_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "entity_definition",
     "named": true,
     "fields": {
@@ -32,6 +116,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "integer_type",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "relation_association",
@@ -107,6 +196,44 @@
     "fields": {}
   },
   {
+    "type": "rule_conditional",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "conditional_statement",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_type",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -122,11 +249,24 @@
     }
   },
   {
+    "type": "string_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "\n",
     "named": false
   },
   {
     "type": " = ",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {
@@ -138,8 +278,16 @@
     "named": true
   },
   {
+    "type": "attribute",
+    "named": false
+  },
+  {
     "type": "boolean",
     "named": false
+  },
+  {
+    "type": "close_parenthesis",
+    "named": true
   },
   {
     "type": "closing_brace",
@@ -158,6 +306,14 @@
     "named": false
   },
   {
+    "type": "gt",
+    "named": true
+  },
+  {
+    "type": "gte",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -170,11 +326,27 @@
     "named": false
   },
   {
+    "type": "lt",
+    "named": true
+  },
+  {
+    "type": "lte",
+    "named": true
+  },
+  {
+    "type": "ne",
+    "named": true
+  },
+  {
     "type": "not_statement",
     "named": true
   },
   {
     "type": "opening_brace",
+    "named": true
+  },
+  {
+    "type": "opening_parenthesis",
     "named": true
   },
   {
@@ -187,6 +359,10 @@
   },
   {
     "type": "relation",
+    "named": false
+  },
+  {
+    "type": "rule",
     "named": false
   },
   {
