@@ -44,7 +44,13 @@ module.exports = grammar({
       ),
 
     relation_association: ($) =>
-      seq(/@/, field("association_name", $.identifier)),
+      seq(
+        /@/,
+        field("association_name", $.identifier),
+        optional($.relation_member),
+      ),
+
+    relation_member: ($) => seq(/#[a-z]+/),
 
     action_definition: ($) => seq("action", field("action_name", $.identifier)),
 

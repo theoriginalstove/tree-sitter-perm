@@ -47,6 +47,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "relation_member",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -90,6 +100,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "relation_member",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "source_file",

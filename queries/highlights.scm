@@ -15,3 +15,4 @@
 (comment) @comment
 
 (relation_association) @type
+(relation_member) @type.builtin
