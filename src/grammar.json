@@ -49,13 +49,16 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "relation_definition"
-                }
-              ]
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "relation_definition"
+                  }
+                ]
+              }
             },
             {
               "type": "BLANK"
@@ -77,7 +80,7 @@
         },
         {
           "type": "FIELD",
-          "name": "name",
+          "name": "relation_name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
@@ -86,6 +89,42 @@
         {
           "type": "SYMBOL",
           "name": "relation_association"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "and_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "or_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "not_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "in_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "relation_association"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -98,11 +137,89 @@
         },
         {
           "type": "FIELD",
-          "name": "name",
+          "name": "association_name",
           "content": {
             "type": "SYMBOL",
             "name": "identifier"
           }
+        }
+      ]
+    },
+    "action_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "action"
+        },
+        {
+          "type": "FIELD",
+          "name": "action_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        }
+      ]
+    },
+    "permission_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "permission"
+        },
+        {
+          "type": "FIELD",
+          "name": "permission_name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": " = "
+        },
+        {
+          "type": "FIELD",
+          "name": "permission_action",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "or_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "and_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "not_statement"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "in_statement"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -131,13 +248,21 @@
     },
     "and_statement": {
       "type": "STRING",
-      "value": "and"
+      "value": " and "
     },
     "or_statement": {
       "type": "STRING",
-      "value": "or"
+      "value": " or "
     },
-    "type": {
+    "not_statement": {
+      "type": "STRING",
+      "value": " not "
+    },
+    "in_statement": {
+      "type": "STRING",
+      "value": " in "
+    },
+    "attribute_type": {
       "type": "CHOICE",
       "members": [
         {
