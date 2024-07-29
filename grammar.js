@@ -6,10 +6,25 @@
 
 const newline = "\n";
 
+const PREC = {
+  primary: 7,
+  unary: 6,
+  multiplicative: 5,
+  additive: 4,
+  comparative: 3,
+  and: 2,
+  or: 1,
+  composite_literal: -1,
+};
+
 module.exports = grammar({
   name: "perm",
 
   extras: ($) => [$.comment, /\s+/],
+
+  conflicts: ($) => [],
+
+  supertypes: ($) => [$._expression],
 
   rules: {
     source_file: ($) => repeat(seq($._instruction, "\n")),
@@ -20,9 +35,18 @@ module.exports = grammar({
       seq(
         "entity",
         field("name", $.identifier),
-        $.opening_brace,
-        optional(repeat(choice($.relation_definition))),
-        $.closing_brace,
+        $.open_brace,
+        optional(
+          repeat(
+            choice(
+              $.relation_definition,
+              $.action_definition,
+              $.attribute_definition,
+              $.permission_definition,
+            ),
+          ),
+        ),
+        $.close_brace,
       ),
 
     relation_definition: ($) =>
@@ -53,28 +77,58 @@ module.exports = grammar({
     relation_member: ($) =>
       seq(field("hash", "#"), field("member", $.identifier)),
 
-    action_definition: ($) => seq("action", field("action_name", $.identifier)),
+    action_definition: ($) =>
+      seq(
+        "action",
+        field("action_name", $.identifier),
+        field("assignment", $.assignment),
+        field(
+          "check",
+          optional(
+            repeat(
+              choice(
+                $.open_parenthesis,
+                $.close_parenthesis,
+                $.call_expression,
+                $.identifier,
+                $.conditional_statement,
+                $.selector_expression,
+              ),
+            ),
+          ),
+        ),
+      ),
 
     permission_definition: ($) =>
       seq(
         "permission",
         field("permission_name", $.identifier),
-        " = ",
-        field("permission_action", $.identifier),
-        optional(
-          repeat(
-            choice(
-              $.or_statement,
-              $.and_statement,
-              $.not_statement,
-              $.in_statement,
+        field("assignment", $.assignment),
+        field(
+          "permission_action",
+          optional(
+            repeat(
+              choice(
+                $.open_parenthesis,
+                $.call_expression,
+                $.close_parenthesis,
+                $.identifier,
+                $.or_statement,
+                $.and_statement,
+                $.not_statement,
+                $.in_statement,
+              ),
             ),
           ),
         ),
       ),
 
     attribute_definition: ($) =>
-      seq("attribute", $.identifier, $.attribute_type),
+      seq(
+        "attribute",
+        field("name", $.identifier),
+        field("type", $.attribute_type),
+      ),
 
     attribute_type: ($) =>
       choice($.boolean_type, $.string_type, $.integer_type, $.double_type),
@@ -83,26 +137,38 @@ module.exports = grammar({
       seq(
         "rule",
         field("name", $.identifier),
-        $.opening_parenthesis,
-        optional(repeat($.rule_parameter)),
+        $.open_parenthesis,
+        optional(repeat(choice($.rule_parameter, ","))),
         $.close_parenthesis,
-        $.opening_brace,
+        $.open_brace,
         $.rule_conditional,
-        $.closing_brace,
+        $.close_brace,
       ),
 
     rule_parameter: ($) => seq($.identifier, $.attribute_type),
     rule_conditional: ($) =>
       seq($.identifier, repeat(choice($.identifier, $.conditional_statement))),
 
+    call_expression: ($) =>
+      prec(
+        PREC.primary,
+        seq(
+          field("function", $.identifier),
+          field("arguments", $.argument_list),
+        ),
+      ),
+
+    // helpers
     variable: () => token.immediate(/[a-zA-Z_][a-zA-Z0-9_]*/),
     comment: () => /\/\/.*/,
     identifier: ($) => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
-    opening_brace: ($) => "{",
-    closing_brace: ($) => "}",
-    octothorpe: ($) => "#",
-    opening_parenthesis: ($) => "(",
+    open_brace: ($) => "{",
+    close_brace: ($) => "}",
+    open_parenthesis: ($) => "(",
     close_parenthesis: ($) => ")",
+    open_bracket: ($) => "[",
+    close_bracket: ($) => "]",
+    octothorpe: ($) => "#",
     and_statement: ($) => " and ",
     or_statement: ($) => " or ",
     not_statement: ($) => " not ",
@@ -112,6 +178,7 @@ module.exports = grammar({
     ne: ($) => "!=",
     lt: ($) => "<",
     lte: ($) => "<=",
+    assignment: ($) => " = ",
     conditional_statement: ($) =>
       choice(
         $.lt,
@@ -128,5 +195,26 @@ module.exports = grammar({
     string_type: ($) => seq("string", optional(seq("[", "]"))),
     integer_type: ($) => seq("integer", optional(seq("[", "]"))),
     double_type: ($) => seq("double", optional(seq("[", "]"))),
+
+    argument_list: ($) =>
+      seq(
+        "(",
+        optional(seq($._expression, repeat(seq(",", choice($._expression))))),
+        ")",
+      ),
+
+    selector_expression: ($) =>
+      prec(
+        PREC.primary,
+        seq(
+          field("operand", $._expression),
+          ".",
+          field("field", $._field_identifier),
+        ),
+      ),
+
+    _field_identifier: ($) => alias($.identifier, $.field_identifier),
+    _expression: ($) =>
+      choice($.identifier, $.call_expression, $.selector_expression),
   },
 });

@@ -25,6 +25,7 @@ entity account {
     attribute tags string[]
 
     action withdraw = check_balance(balance, request.amount) and (check_limit(withdraw_limit, request.amount) or owner.approval)
+    // this is a  comment
 }
 
 rule check_balance(balance double, amount double) {
