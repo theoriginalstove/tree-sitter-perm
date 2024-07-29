@@ -18,7 +18,7 @@ entity account {
     relation checkings @account
     relation savings @account
 
-    relation owner @organization
+    relation owner @organization#member
 
     attribute withdraw_limit double
     attribute balance double
