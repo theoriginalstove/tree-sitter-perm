@@ -14,7 +14,7 @@ module.exports = grammar({
   rules: {
     source_file: ($) => repeat(seq($._instruction, "\n")),
 
-    _instruction: ($) => choice($.entity_definition),
+    _instruction: ($) => choice($.entity_definition, $.rule_definition),
 
     entity_definition: ($) =>
       seq(
@@ -47,7 +47,7 @@ module.exports = grammar({
       seq(
         /@/,
         field("association_name", $.identifier),
-        optional($.relation_member),
+        field("member", optional($.relation_member)),
       ),
 
     relation_member: ($) =>
@@ -97,7 +97,7 @@ module.exports = grammar({
 
     variable: () => token.immediate(/[a-zA-Z_][a-zA-Z0-9_]*/),
     comment: () => /\/\/.*/,
-    identifier: ($) => /[a-z]+/,
+    identifier: ($) => /[_\p{XID_Start}][_\p{XID_Continue}]*/,
     opening_brace: ($) => "{",
     closing_brace: ($) => "}",
     octothorpe: ($) => "#",

@@ -23,6 +23,10 @@
         {
           "type": "SYMBOL",
           "name": "entity_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "rule_definition"
         }
       ]
     },
@@ -144,16 +148,20 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "relation_member"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "FIELD",
+          "name": "member",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "relation_member"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
         }
       ]
     },
@@ -397,7 +405,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-z]+"
+      "value": "[_\\p{XID_Start}][_\\p{XID_Continue}]*"
     },
     "opening_brace": {
       "type": "STRING",

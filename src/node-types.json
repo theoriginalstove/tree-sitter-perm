@@ -135,17 +135,17 @@
             "named": true
           }
         ]
+      },
+      "member": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "relation_member",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "relation_member",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -236,6 +236,52 @@
     }
   },
   {
+    "type": "rule_definition",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "close_parenthesis",
+          "named": true
+        },
+        {
+          "type": "closing_brace",
+          "named": true
+        },
+        {
+          "type": "opening_brace",
+          "named": true
+        },
+        {
+          "type": "opening_parenthesis",
+          "named": true
+        },
+        {
+          "type": "rule_conditional",
+          "named": true
+        },
+        {
+          "type": "rule_parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "rule_parameter",
     "named": true,
     "fields": {},
@@ -264,6 +310,10 @@
       "types": [
         {
           "type": "entity_definition",
+          "named": true
+        },
+        {
+          "type": "rule_definition",
           "named": true
         }
       ]
