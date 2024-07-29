@@ -50,7 +50,8 @@ module.exports = grammar({
         optional($.relation_member),
       ),
 
-    relation_member: ($) => seq(/#[a-z]+/),
+    relation_member: ($) =>
+      seq(field("hash", "#"), field("member", $.identifier)),
 
     action_definition: ($) => seq("action", field("action_name", $.identifier)),
 
@@ -81,7 +82,7 @@ module.exports = grammar({
     rule_definition: ($) =>
       seq(
         "rule",
-        $.identifier,
+        field("name", $.identifier),
         $.opening_parenthesis,
         optional(repeat($.rule_parameter)),
         $.close_parenthesis,
@@ -99,6 +100,7 @@ module.exports = grammar({
     identifier: ($) => /[a-z]+/,
     opening_brace: ($) => "{",
     closing_brace: ($) => "}",
+    octothorpe: ($) => "#",
     opening_parenthesis: ($) => "(",
     close_parenthesis: ($) => ")",
     and_statement: ($) => " and ",

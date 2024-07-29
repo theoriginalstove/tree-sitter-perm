@@ -193,7 +193,28 @@
   {
     "type": "relation_member",
     "named": true,
-    "fields": {}
+    "fields": {
+      "hash": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "#",
+            "named": false
+          }
+        ]
+      },
+      "member": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "rule_conditional",
@@ -259,6 +280,10 @@
   },
   {
     "type": " = ",
+    "named": false
+  },
+  {
+    "type": "#",
     "named": false
   },
   {

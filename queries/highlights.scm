@@ -22,7 +22,7 @@
 (comment) @comment
 
 (relation_association) @type
-(relation_member) @type.builtin
+(relation_member) @property
 
 [
   "boolean"
@@ -30,3 +30,7 @@
   "integer"
   "double"
 ] @type
+
+(relation_member
+    hash: "#" @punctuation.special
+    member: (identifier) @type.builtin)
