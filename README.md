@@ -34,11 +34,7 @@ parser_config.perm = {
   install_info = {
     url = 'https://github.com/theoriginalstove/tree-sitter-perm', -- local path or git repo
     files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-    -- optional entries:
-    branch = 'main', -- default branch in case of git repo if different from master
-    use_makefile = true,
   },
-  filetype = 'perm', -- if filetype does not match the parser name
 }
 
 vim.treesitter.language.register('perm','perm')
