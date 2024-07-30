@@ -2,6 +2,10 @@
 
 Syntax highlighting support for the Perm authorization language used by [Permify](https://permify.co) for [tree-sitter](https://tree-sitter.github.io/tree-sitter/)
 
+## Status
+I believe the grammar and highlights are complete. Checked against the mercury and notion examples from the permify docs. If there are some nasty perm files that you
+have that this isn't working for, let me know and I'll work on getting it working correctly (or open a issue/PR).
+
 
 ### TODOs
 - [ ] Add tests for all the rules
