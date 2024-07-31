@@ -1,6 +1,6 @@
 {
-  "name": "tree-sitter-perm",
-  "version": "0.0.4",
+  "name": "@theoriginalstove/tree-sitter-perm",
+  "version": "0.0.5",
   "description": "Perm grammer for tree-sitter",
   "main": "bindings/node",
   "types": "bindings/node",
@@ -10,7 +10,7 @@
     "prebuildify": "prebuildify --napi --strip"
   },
   "author": "Steven Turturo",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "keywords": [
     "Permify",
     "Perm",
@@ -41,10 +41,23 @@
   "tree-sitter": [
     {
       "scope": "source.perm",
-      "file-types": ["perm"],
+      "file-types": [
+        "perm"
+      ],
       "highlights": [
         "queries/highlights.scm"
       ]
     }
-  ]
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theoriginalstove/tree-sitter-perm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theoriginalstove/tree-sitter-perm/issues"
+  },
+  "homepage": "https://github.com/theoriginalstove/tree-sitter-perm#readme"
 }
