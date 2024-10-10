@@ -29,20 +29,44 @@ vim.filetype.add({
     }
 })
 
+vim.treesitter.language.register('perm','perm')
+
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
 parser_config.perm = {
   install_info = {
     url = 'https://github.com/theoriginalstove/tree-sitter-perm', -- local path or git repo
     files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+    branch = "main",
   },
 }
 
-vim.treesitter.language.register('perm','perm')
 ```
 
 Then source your config or reload Neovim and run `:TSInstall perm`
 
-Syntax highlighting should then be enabled for `.perm` files
+##### Syntax Highlighting
+Syntax highlighting be enabled for `.perm` files once we copy the queries into our nvim-treesitter configuration.
+
+1. Clone the repository:
+```sh
+git clone https://github.com/theoriginalstove/tree-sitter-perm.git
+cd tree-sitter-perm
+```
+
+2. Copy the queries into your nvim-treesitter install location
+
+###### vim-plug
+
+```sh
+cp -r ./queries ~/.vim/plugged/nvim-treesitter
+```
+
+###### packer.nvim
+
+###### dein.vim
+
+###### lazy.nvim
 
 ### Zed
 
